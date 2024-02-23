@@ -22,8 +22,8 @@ class monoid (α : Type u) extends semigroup α, has_one α where
   -- (one_mul : ∀ a : α, one * a = a) (mul_one : ∀ a : α, a * one = a)
   -- (one_mul : ∀ a : α, 1 * a = a) (mul_one : ∀ a : α, a * 1 = a)
 
+-- has_mul α seems redundant, bcs if I remove it there's no issues (actually realised this in v2 @class group)
 class group (α : Type u) extends monoid α, has_inv α, has_mul α where
-  mul_left_inv : ∀ a : α, inv a * a = one
   left_inv_mul : ∀ a : α, inv a * a = one
   right_mul_inv : ∀ a : α, a * inv a = one
 
@@ -40,5 +40,12 @@ class group (α : Type u) extends monoid α, has_inv α, has_mul α where
 class commutativeGroup (α : Type u) extends group α where
   mul_comm : ∀ a b : α, a * b = b * a
 
+structure Prod (α : Type) (β : Type) where
+  fst : α
+  snd : β
+
+def fives : String × Nat := ("five", 5)
+
+#eval fives
 
 end grp
